@@ -1,5 +1,10 @@
 # SOPT_Android_27th_Seminar2
 
+<div>
+	<img src="https://user-images.githubusercontent.com/46614405/97428763-cdc5ad00-1959-11eb-8eb9-00ecbc30a46e.gif">
+	<img src="https://user-images.githubusercontent.com/46614405/97428615-91924c80-1959-11eb-81d3-aa6d046a018b.png">
+</div>
+
 > 2차 세미나 필수과제, 성장과제1
 >> 과제 완료일 2020.10.26, 리드미 작성일 2020.10.28
 ------------
