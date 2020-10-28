@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                  */
-                startActivityForResult(Intent(this, HomeActivity::class.java), REQUEST_CODE_LOGIN)
+                startActivityForResult(Intent(this, RecyclerViewActivity::class.java), REQUEST_CODE_LOGIN)
 
                 Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
             }
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     fun autoLogIn() {
         if(pref.getBoolean("checkAutoLogIn", false) == true || !pref.getString("id", null).isNullOrBlank()){
             Toast.makeText(this, "자동로그인 되었습니다!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext,HomeActivity::class.java)
+            val intent = Intent(applicationContext,RecyclerViewActivity::class.java)
             startActivityForResult(intent, REQUEST_CODE_LOGIN)
             /*val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)*/

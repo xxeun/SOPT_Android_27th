@@ -22,7 +22,7 @@ class SampleAdapter (private val context : Context) : RecyclerView.Adapter<Sampl
         holder.onBind(data[position])
 
         holder.itemView.setOnClickListener(){
-            //SampleData.xml의 리스트가 들어있는 data 변수를 get함수와 함께 사용하여 smpleData 변수에 넣어줌
+            //SampleData.xml의 리스트가 들어있는 data 변수를 get함수와 함께 사용하여 sampleData 변수에 넣어줌
             val sampleData = data.get(position)
 
             var gTitle : String = sampleData.title
