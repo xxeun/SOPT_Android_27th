@@ -39,7 +39,7 @@ List 구현을 위해 사용하는 View. 쉽게 말해, User가 관리하는 모
 
     var data = mutableListOf<SampleData>()
     
-* DataSet을 mutableListOF로 받아옴
+* DataSet을 mutableListOf로 받아옴
 
         holder.itemView.setOnClickListener(){
             //SampleData.xml의 리스트가 들어있는 data 변수를 get함수와 함께 사용하여 sampleData 변수에 넣어줌
