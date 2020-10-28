@@ -1,4 +1,4 @@
-# SOPT_Android_27th
+# SOPT_Android_27th_Seminar2
 
 > 2차 세미나 필수과제, 성장과제1
 >> 과제 완료일 2020.10.26, 리드미 작성일 2020.10.28
@@ -10,8 +10,8 @@ List 구현을 위해 사용하는 View. 쉽게 말해, User가 관리하는 모
 화면에 표시될 아이템 뷰를 저장하는 객체
 ## Adapter ##
 데이터 목록을 아이템 단위의 뷰로 구성하여 화면에 표시해주는 역할
-
-> RecyclerView
+------------
+> RecyclerViewActivity
 
     sampleAdapter = SampleAdapter(this)
 
@@ -24,4 +24,32 @@ List 구현을 위해 사용하는 View. 쉽게 말해, User가 관리하는 모
         )
         sampleAdapter.notifyDataSetChanged()
        
+* Adapter를 활용해서 data를 List로 출력해주는 View
+* notifyDataSetChanged() 함수 사용해서 DataSet가 바뀌었음을 알려줌
+-----------
+> SampleAdapterActivity
 
+    var data = mutableListOf<SampleData>()
+    
+* DataSet을 mutableListOF로 받아옴
+
+        holder.itemView.setOnClickListener(){
+            //SampleData.xml의 리스트가 들어있는 data 변수를 get함수와 함께 사용하여 smpleData 변수에 넣어줌
+            val sampleData = data.get(position)
+
+            var gTitle : String = sampleData.title
+            var gSubtitle : String = sampleData.subTitle
+            var gWriteday : String = sampleData.writeDay
+            var gInfo : String = sampleData.info
+
+            //Intent 활용하여 ShowDetailActivity에게 데이터 넘겨주는 과정
+            val intent = Intent(context, ShowDetailActivity::class.java)
+
+            //putExtra 이용해서 sampleData의 각 변수를 String으로 저장했던 gTitle~gInfo와 key값을 넘겨줌
+            intent.putExtra("iTitle", gTitle)
+            intent.putExtra("iSubTitle",gSubtitle)
+            intent.putExtra("iWriteDay",gWriteday)
+            intent.putExtra("iInfo",gInfo)
+
+            context.startActivity(intent)
+        }
