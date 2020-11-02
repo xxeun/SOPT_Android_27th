@@ -22,7 +22,7 @@ ViewPager와 연동하여 서브 화면들을 전환. ViewPager에 페이지 변
 상단탭. setupWithViewPager 활용해서 TabLayout에 ViewPager 연동
 
 ------------
-*Fragment 안에서 또 한 번 ViewPager 구현할 때는 OnViewCreated() 안에서 UI 등 작업해주어야 함
+* Fragment 안에서 또 한 번 ViewPager 구현할 때는 OnViewCreated() 안에서 작업해줘야 함(UI 작업 등)
 -----------
 # 필수과제 #
 > RecyclerViewActivity
@@ -73,7 +73,7 @@ ViewPager와 연동하여 서브 화면들을 전환. ViewPager에 페이지 변
     	override fun getCount(): Int = fragments.size //크기 반환
 	
 * ViewPager마다 Adapter가 별도로 필요함. 
-*3차 세미나 과제에서는 첫 번째 Fragment에서 ViewPager를 하나 더 만들어야 하는 것! 따라서, 첫 번째 Fragment에 대한 Adapter가 필요함
+* 3차 세미나 과제에서는 첫 번째 Fragment에서 ViewPager를 하나 더 만들어야 하는 것! 따라서, 첫 번째 Fragment에 대한 Adapter가 필요함
 ---------------------
 
 > FirstFragment
@@ -95,11 +95,11 @@ ViewPager와 연동하여 서브 화면들을 전환. ViewPager에 페이지 변
 	    
 * Info, OtherFragment 간의 전환을 위해 TabLayout을 함께 구현
 * FirstFragment의 xml layout에 fragment_viewpager 추가 -> fragment의 id.adapter 연결
-*!!! 인자 잘 확인하기 !!!
+* !!! 인자 잘 확인하기 !!!
 
 > InfoFragmnet
 
 	return inflater.inflate(R.layout.fragment_info, container, false)
 	
 * Fragment는 inflater 사용해서 xml과 연동시켜주기
-* Inflater란 ? xml로 정의된 view(or menu etc...)를 실제 객체화 시킴
+* Inflater란 ? xml로 정의된 view(or menu etc...)를 실제 객체화 시켜주는 것
