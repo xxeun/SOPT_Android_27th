@@ -102,4 +102,5 @@ ViewPager와 연동하여 서브 화면들을 전환. ViewPager에 페이지 변
 	return inflater.inflate(R.layout.fragment_info, container, false)
 	
 * Fragment는 inflater 사용해서 xml과 연동시켜주기
+* OtherFragment도 마찬가지
 * Inflater란 ? xml로 정의된 view(or menu etc...)를 실제 객체화 시켜주는 것
