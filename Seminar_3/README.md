@@ -7,7 +7,7 @@
 </div>
 
 > 3차 세미나 필수과제
->> 과제 완료일 2020.11.02, 리드미 작성일 2020.11.02
+>> 과제 완료일 2020.11.01, 리드미 작성일 2020.11.02
 ------------
 
 ## Fragment ##
@@ -22,6 +22,84 @@ ViewPager와 연동하여 서브 화면들을 전환. ViewPager에 페이지 변
 상단탭. setupWithViewPager 활용해서 TabLayout에 ViewPager 연동
 
 ------------
+*Fragment 안에서 또 한 번 ViewPager 구현할 때는 OnViewCreated() 안에서 UI 등 작업해주어야 함
+-----------
 # 필수과제 #
 > RecyclerViewActivity
 
+	 viewPagerAdapter = SampleViewPagerAdapter(supportFragmentManager)
+	 viewPagerAdapter.fragments = listOf(
+	 	FirstFragment(),
+            	SecondFragment(),
+            	ThirdFragment()
+		
+* ViewPagerAdapter를 supportFragmentManager 사용해서 연동 후, RecyclerView에 들어갈 Fragment 3가지를 listOf로 연결
+
+        sample_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                sample_bottom_navi.menu.getItem(position).isChecked = true
+            }
+        })
+
+* 뷰페이저를 슬라이드 했을 때 그에 대응되는 하단 탭 변경
+
+        sample_bottom_navi.setOnNavigationItemSelectedListener {
+            var index by Delegates.notNull<Int>()
+            when(it.itemId) {
+                R.id.menu_home -> index = 0 //인덱스 기준 첫번째 화면은 0
+                R.id.menu_account -> index = 1
+                R.id.menu_camera -> index = 2
+            }
+            sample_viewpager.currentItem = index //하단 탭 눌렀을 때 그에 대응하는 viewPager 화면 보여지게 됨
+            true//반환값이 boolean 값이기 때문에 true 전달
+	   
+* 하단 탭을 눌렀을 때 뷰페이저 화면 변경. 하단 탭의 icon id에 따른 index를 지정해줌
+* when문, itemId 사용
+
+-----------------
+> FragmentViewpagerAdapter
+
+ 	: FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+    	var fragments = listOf<Fragment>()
+    	override fun getItem(position: Int): Fragment = fragments[position]
+    	override fun getCount(): Int = fragments.size //크기 반환
+	
+* ViewPager마다 Adapter가 별도로 필요함. 
+*3차 세미나 과제에서는 첫 번째 Fragment에서 ViewPager를 하나 더 만들어야 하는 것! 따라서, 첫 번째 Fragment에 대한 Adapter가 필요함
+---------------------
+
+> FirstFragment
+
+ 	fragmentViewpagerAdapter = FragmentViewpagerAdapter(childFragmentManager)
+        fragmentViewpagerAdapter.fragments = listOf(
+            InfoFragment(),
+            OtherFragment()
+        )
+
+* RecyclerViewActivity에서 First, Second, Third Fragment 연결해준 것과 마찬가지로 FirstFragment 안에 들어가는 ViewPager를 연결
+
+		fragment_viewpager.adapter = fragmentViewpagerAdapter
+	
+        	sample_tab.setupWithViewPager(fragment_viewpager)
+        	sample_tab.apply {
+            		getTabAt(0)?.text = "INFO"
+            		getTabAt(1)?.text = "OTHER"
+	    
+* Info, OtherFragment 간의 전환을 위해 TabLayout을 함께 구현
+* FirstFragment의 xml layout에 fragment_viewpager 추가 -> fragment의 id.adapter 연결
+*!!! 인자 잘 확인하기 !!!
+
+> InfoFragmnet
+
+	return inflater.inflate(R.layout.fragment_info, container, false)
+	
+* Fragment는 inflater 사용해서 xml과 연동시켜주기
+* Inflater란 ? xml로 정의된 view(or menu etc...)를 실제 객체화 시킴
