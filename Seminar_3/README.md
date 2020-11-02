@@ -1,8 +1,9 @@
 # SOPT_Android_27th_Seminar3
 
 <div>
-	<img src="https://user-images.githubusercontent.com/46614405/97428763-cdc5ad00-1959-11eb-8eb9-00ecbc30a46e.gif", height=500>
-	<img src="https://user-images.githubusercontent.com/46614405/97428955-15e4cf80-195a-11eb-8e1e-903c24d34433.jpg", height=500>
+	<img src="https://user-images.githubusercontent.com/46614405/97841821-eb17c400-1d29-11eb-8021-c0f2969d40d7.gif", height=500>
+	<img src="https://user-images.githubusercontent.com/46614405/97841847-f66aef80-1d29-11eb-9009-882e0f8bd141.gif", height=500>
+	<img src="https://user-images.githubusercontent.com/46614405/97841885-071b6580-1d2a-11eb-9e8b-fc99036e23c5.gif", height=500>
 </div>
 
 > 3차 세미나 필수과제
