@@ -1,6 +1,6 @@
 package data
 
-class SampleRequestData(
+class LoginRequest(
     val email : String,
     val password : String
 )

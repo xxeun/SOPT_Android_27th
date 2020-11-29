@@ -1,6 +1,6 @@
 package data
 
-data class SampleResponseData(
+data class LoginResponse(
     val `data`: Data,
     val message: String,
     val status: Int,

@@ -1,16 +1,13 @@
 package com.example.a1
 
-import Adapter.SampleViewPagerAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.BaseAdapter
 import android.widget.Toast
 import api.SampleServiceImpl
-import data.SampleRequestData
-import data.SampleResponseData
+import data.LoginRequest
+import data.LoginResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -69,46 +66,42 @@ class MainActivity : BaseActivity() {
         Login.setOnClickListener {
             val email = id.text.toString()
             val password = pw.text.toString()
-            val call : Call<SampleResponseData> = SampleServiceImpl.service.postLogin(
-                SampleRequestData(email = email, password = password)
+            val call : Call<LoginResponse> = SampleServiceImpl.service.postLogin(
+                LoginRequest(email = email, password = password)
             )
-            call.enqueue(object : Callback<SampleResponseData>{
-                override fun onFailure(call: Call<SampleResponseData>, t: Throwable) {
+            call.enqueue(object : Callback<LoginResponse>{
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     // 통신 실패 로직
                 }
                 override fun onResponse(
-                    call: Call<SampleResponseData>,
-                    response: Response<SampleResponseData>
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
                 ) {
                     response.takeIf { it.isSuccessful}
                         ?.body()
-                        ?.let { it ->
-                        // do something
+                        ?.let {
+                            checkAutoLogIn = true
+                            //editor 사용해서 데이터 저장할 수 있음.
+                            editor.putBoolean("checkAutoLogin", checkAutoLogIn)
+                            editor.putString("id", id.text.toString())
+
+                            editor.apply()
+                            //반드시 apply 메서드 호출해줘야 실제 반영됨
+                            /*
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                             */
+                            startActivityForResult(
+                                Intent(this@MainActivity, RecyclerViewActivity::class.java),
+                                REQUEST_CODE_LOGIN
+                            )
+
+                            Toast.makeText(this@MainActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
                         } ?: showError(response.errorBody())
                 }
             }
             )
-
-            if (!(id.text.toString().equals("") || pw.text.toString().equals(""))) {
-                checkAutoLogIn = true
-                //editor 사용해서 데이터 저장할 수 있음.
-                editor.putBoolean("checkAutoLogin", checkAutoLogIn)
-                editor.putString("id", id.text.toString())
-
-                editor.apply()
-                //반드시 apply 메서드 호출해줘야 실제 반영됨
-                /*
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-                 */
-                startActivityForResult(
-                    Intent(this, RecyclerViewActivity::class.java),
-                    REQUEST_CODE_LOGIN
-                )
-
-                Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
-            } else
-                Toast.makeText(this, "빈칸을 입력해주세요", Toast.LENGTH_SHORT).show()
+           //원래 로그인 로직 있던 자리
         }
         autoLogIn()
     }
