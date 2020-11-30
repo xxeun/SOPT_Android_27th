@@ -87,10 +87,6 @@ class MainActivity : BaseActivity() {
 
                             editor.apply()
                             //반드시 apply 메서드 호출해줘야 실제 반영됨
-                            /*
-                            val intent = Intent(this, HomeActivity::class.java)
-                            startActivity(intent)
-                             */
                             startActivityForResult(
                                 Intent(this@MainActivity, RecyclerViewActivity::class.java),
                                 REQUEST_CODE_LOGIN
