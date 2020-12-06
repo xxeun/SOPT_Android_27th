@@ -21,7 +21,7 @@
 
 > 회원가입 및 로그인 서버통신 구현
 
-Interface
+## Interface
 
 	interface SampleService {
    		 @Headers("Content-Type:application/json")
@@ -37,7 +37,7 @@ Interface
 
 * 회원가입과 로그인 Request는 Body에 넣어줌
 
-SignUpRequest
+## SignUpRequest
 
 	class SignUpRequest(
     		val email : String,
@@ -47,7 +47,7 @@ SignUpRequest
 	
 * 서버 SignUp에서 요구하는 데이터 형식
 	
-SignUpResponse
+## SignUpResponse
 
 	data class SignUpResponse(
     		val `data`: Data,
@@ -62,7 +62,7 @@ SignUpResponse
    	 	)
 	}
 	
-LoginRequest
+## LoginRequest
 
 	class LoginRequest(
     		val email : String,
@@ -71,7 +71,7 @@ LoginRequest
 		
 * 서버 Login에서 요구하는 데이터 형식
 
-LoginResponse
+## LoginResponse
 
 	data class LoginResponse(
 		val `data`: Data,
@@ -86,7 +86,7 @@ LoginResponse
     		)
 	}
 	
-MainActivity - 로그인 함수 구현 액티비티
+## MainActivity - 로그인 함수 구현 액티비티
 
 	Login.setOnClickListener {
             val email = id.text.toString()
@@ -110,7 +110,7 @@ MainActivity - 로그인 함수 구현 액티비티
 			
 * Response를 받아온 후, 요청에 성공하면 Let문을 이용하여 Login 함수 로직 구현
 
-SignUpActivity
+## SignUpActivity
 
 	sign_up.setOnClickListener{
             val call : Call<SignUpResponse> = SampleServiceImpl.service.postSignUp(
