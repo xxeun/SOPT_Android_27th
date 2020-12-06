@@ -3,7 +3,8 @@
 <div>
 	<img src="https://user-images.githubusercontent.com/46614405/101271826-b7690780-37c9-11eb-8486-21c68128b1ff.gif", height=500>
 	<img src="https://user-images.githubusercontent.com/46614405/101271828-bd5ee880-37c9-11eb-8845-45da067acd53.gif", height=500>
-	<img src="", height=500>
+	<img src="https://user-images.githubusercontent.com/46614405/101271844-f6975880-37c9-11eb-899e-c89f2fc6b9e8.png", height=300>
+	<img src="https://user-images.githubusercontent.com/46614405/101271849-fc8d3980-37c9-11eb-8be5-420a9cfc8d1a.png", height=300>
 </div>
 
 > 6차 세미나 필수과제
